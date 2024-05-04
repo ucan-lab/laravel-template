@@ -1,7 +1,7 @@
 name: Assign Label
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, labeled, unlabeled, synchronize, reopened]
 jobs:
   assign-label:
     permissions:
@@ -13,5 +13,35 @@ jobs:
         with:
           fetch-depth: 0
       - uses: actions/labeler@v5
+        if: ${{ contains(fromJson('["opened", "synchronize"]'), github.event.action) }}
         with:
           configuration-path: .github/labeler.yaml
+  check-require-label:
+    needs: assign-label
+    permissions:
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
+      - id: labels
+        shell: bash
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.number }}
+        run: |
+          json=$(gh pr view "$PR_NUMBER" --json labels | jq -c '.labels|map(.name)')
+          echo "json=$json" >> "$GITHUB_OUTPUT"
+      - name: Echo Label
+        run: echo "${{ steps.labels.outputs.json }}"
+      - name: bug, chore, dependencies, documentation, enhancement, refactor, release の中からいずれかのラベルを指定してください。
+        if: >-
+          ! contains(fromJSON(steps.labels.outputs.json), 'bug') &&
+          ! contains(fromJSON(steps.labels.outputs.json), 'chore') &&
+          ! contains(fromJSON(steps.labels.outputs.json), 'dependencies') &&
+          ! contains(fromJSON(steps.labels.outputs.json), 'documentation') &&
+          ! contains(fromJSON(steps.labels.outputs.json), 'enhancement') &&
+          ! contains(fromJSON(steps.labels.outputs.json), 'refactor') &&
+          ! contains(fromJSON(steps.labels.outputs.json), 'release')
+        run: exit 1
+      - name: Successfully
+        run: exit 0
