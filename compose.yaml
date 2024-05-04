@@ -57,6 +57,19 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
 
+  node:
+    build:
+      context: .
+      dockerfile: ./infra/docker/node/Dockerfile
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    tty: true
+    volumes:
+      - type: bind
+        source: ./src
+        target: /workspace
+
   mailpit:
     image: axllent/mailpit
     ports:
