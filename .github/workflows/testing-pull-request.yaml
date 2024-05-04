@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [synchronize, opened, reopened]
 jobs:
-  pint:
+  testing:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -18,6 +18,11 @@ jobs:
           php-version: 8.3
           tools: composer:v2
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction --no-scripts --no-ansi
+        run: composer install --quiet --prefer-dist --no-progress --no-interaction --no-scripts --no-ansi
       - name: Pint Testing
-        run: ./vendor/bin/pint -v --test
+        run: ./vendor/bin/pint --verbose --test
+      - name: Pest Testing
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          ./vendor/bin/pest --debug
