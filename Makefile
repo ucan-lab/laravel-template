@@ -34,6 +34,8 @@ web:
 	docker compose exec web bash
 app:
 	docker compose exec app bash
+node:
+	docker compose exec node bash
 tinker:
 	docker compose exec app php artisan tinker
 dump:
