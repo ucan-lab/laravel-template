@@ -1,0 +1,23 @@
+name: Testing Pull Request
+on:
+  pull_request:
+    types: [synchronize, opened, reopened]
+jobs:
+  pint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          tools: composer:v2
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction --no-scripts --no-ansi
+      - name: Pint Testing
+        run: ./vendor/bin/pint -v --test
