@@ -68,6 +68,10 @@ tasks:
     cmds:
       - docker compose exec app bash
 
+  node:
+    cmds:
+      - docker compose exec node bash
+
   tinker:
     cmds:
       - docker compose exec app php artisan tinker
