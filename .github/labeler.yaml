@@ -1,0 +1,22 @@
+enhancement:
+  - head-branch: ['^feat(ure)?', '^enhancement']
+bug:
+  - head-branch: ['^bug', '^fix']
+chore:
+  - head-branch: ['^chore']
+refactor:
+  - head-branch: ['^refactor']
+documentation:
+  - head-branch: ['^doc(ument)?', '^documentation']
+docker:
+  - changed-files:
+      - any-glob-to-any-file: ['infra/docker/*', 'compose.yaml']
+npm:
+  - changed-files:
+      - any-glob-to-any-file: ['package.json', 'package-lock.json']
+composer:
+  - changed-files:
+      - any-glob-to-any-file: ['composer.json', 'composer.lock']
+migrate:
+  - changed-files:
+      - any-glob-to-any-file: ['src/database/migrations/*']
