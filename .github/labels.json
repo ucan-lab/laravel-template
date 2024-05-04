@@ -1,0 +1,87 @@
+[
+    {
+        "name": "bug",
+        "color": "d73a4a",
+        "description": "種別: 不具合の修正"
+    },
+    {
+        "name": "chore",
+        "color": "e2601e",
+        "description": "種別: ツールやライブラリの変更"
+    },
+    {
+        "name": "dependencies",
+        "color": "5319e7",
+        "description": "種別: セキュリティアップデート"
+    },
+    {
+        "name": "documentation",
+        "color": "0075ca",
+        "description": "種別: ドキュメントの改善または追加"
+    },
+    {
+        "name": "duplicate",
+        "color": "cfd3d7",
+        "description": "種別: 重複"
+    },
+    {
+        "name": "enhancement",
+        "color": "a2eeef",
+        "description": "種別: 新機能または要望"
+    },
+    {
+        "name": "invalid",
+        "color": "e4e669",
+        "description": "種別: 対応しない。理由を書いてクローズする"
+    },
+    {
+        "name": "refactor",
+        "color": "afd380",
+        "description": "種別: リファクタリング"
+    },
+    {
+        "name": "release",
+        "color": "003b46",
+        "description": "種別: リリース"
+    },
+    {
+        "name": "major",
+        "color": "07575b",
+        "description": "バージョニング: メジャーアップデート"
+    },
+    {
+        "name": "minor",
+        "color": "c4dfe6",
+        "description": "バージョニング: マイナーアップデート"
+    },
+    {
+        "name": "docker",
+        "color": "e6d72a",
+        "description": "依存関係: docker compose build が必要な変更"
+    },
+    {
+        "name": "npm",
+        "color": "e6d72a",
+        "description": "依存関係: npm install が必要な変更"
+    },
+    {
+        "name": "composer",
+        "color": "e6d72a",
+        "description": "依存関係: composer install が必要な変更"
+    },
+    {
+        "name": "migrate",
+        "color": "e6d72a",
+        "description": "依存関係: php artisan migrate が必要な変更"
+    },
+    {
+        "name": "ignore-for-release-note",
+        "color": "cccccc",
+        "description": "リリースノートから除外"
+    },
+    {
+        "name": "ignore-for-ai-code-review",
+        "color": "cccccc",
+        "description": "AIコードレビューから除外"
+    }
+]
