@@ -23,6 +23,8 @@ jobs:
         run: ./vendor/bin/pint --verbose --test
       - name: PHPStan Analyse
         run: ./vendor/bin/phpstan analyse --no-progress
+      - name: Insights Analyse
+        run: php artisan insights --no-interaction --no-ansi --format=github-action
       - name: Pest Testing
         run: |
           cp .env.example .env
