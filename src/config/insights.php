@@ -102,7 +102,7 @@ return [
             'linesCountBetweenAnnotationsGroups' => 0,
             'linesCountAfterLastContent' => 0,
             'annotationsGroups' => [],
-        ]
+        ],
     ],
 
     /*
