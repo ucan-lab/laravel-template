@@ -82,3 +82,5 @@ pint:
 	docker compose exec app ./vendor/bin/pint -v
 pint-test:
 	docker compose exec app ./vendor/bin/pint -v --test
+stan:
+	docker compose exec app ./vendor/bin/phpstan analyse

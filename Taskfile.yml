@@ -153,3 +153,7 @@ tasks:
   pint-test:
     cmds:
       - docker compose exec app ./vendor/bin/pint -v --test
+
+  stan:
+    cmds:
+      - docker compose exec app ./vendor/bin/phpstan analyse
