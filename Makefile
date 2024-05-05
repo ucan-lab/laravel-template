@@ -84,3 +84,7 @@ pint-test:
 	docker compose exec app ./vendor/bin/pint -v --test
 stan:
 	docker compose exec app ./vendor/bin/phpstan analyse
+insights:
+	docker compose exec app php artisan insight --no-interaction --fix
+insights-test:
+	docker compose exec app php artisan insight --no-interaction

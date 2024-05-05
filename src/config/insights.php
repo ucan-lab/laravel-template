@@ -91,6 +91,18 @@ return [
         ForbiddenPrivateMethods::class => [
             'title' => 'The usage of private methods is not idiomatic in Laravel.',
         ],
+        PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff::class => [
+            'lineLimit' => 160,
+            'absoluteLineLimit' => 180,
+        ],
+        SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff::class => [
+            'linesCountBeforeFirstContent' => 0,
+            'linesCountBetweenDescriptionAndAnnotations' => 0,
+            'linesCountBetweenDifferentAnnotationsTypes' => 0,
+            'linesCountBetweenAnnotationsGroups' => 0,
+            'linesCountAfterLastContent' => 0,
+            'annotationsGroups' => [],
+        ]
     ],
 
     /*
