@@ -30,3 +30,40 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           ./vendor/bin/pest --debug
+  build-testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Docker Version
+        run: docker version
+      - name: Docker Compose Settings
+        run: |
+          echo APP_BUILD_TARGET=development > .env
+          echo "UID=$(id -u)" >> .env
+          echo "GID=$(id -g)" >> .env
+      - name: Build Docker Images
+        run: docker compose build
+      - name: Create & Start Docker Containers
+        run: docker compose up -d
+      - name: OS Version
+        run: |
+          docker compose exec app cat /etc/os-release
+          docker compose exec app cat /etc/debian_version
+      - name: PHP Version
+        run: docker compose exec app php --version
+      - name: Composer Version
+        run: docker compose exec app composer --version
+      - name: Composer Install
+        run: docker compose exec app composer install --quiet --prefer-dist --no-progress --no-interaction --no-scripts --no-ansi
+      - name: Laravel Version
+        run: docker compose exec app php artisan --version
+      - name: Wait for the MySQL container to start
+        run: sleep 5s
+        shell: bash
+      - name: Migrate & Rollback & Seeding Testing
+        run: |
+          docker compose exec app cp .env.example .env
+          docker compose exec app php artisan migrate
+          docker compose exec app php artisan migrate:refresh --seed
