@@ -79,6 +79,7 @@ return [
         DeclareStrictTypesSniff::class,
         DisallowMixedTypeHintSniff::class,
         ForbiddenDefineFunctions::class,
+        ForbiddenFinalClasses::class,
         ForbiddenNormalClasses::class,
         ForbiddenTraits::class,
         ParameterTypeHintSniff::class,
