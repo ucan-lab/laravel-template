@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: actions/labeler@v5
         if: ${{ contains(fromJson('["opened", "synchronize"]'), github.event.action) }}
         with:
